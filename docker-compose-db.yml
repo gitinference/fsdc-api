@@ -1,0 +1,32 @@
+services:
+  database:
+    image: postgres:17
+    container_name: api_database
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+    secrets:
+      - db-password
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
+      POSTGRES_DB: postgres
+    volumes:
+      - database_volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  database_volume:
+
+secrets:
+  db-password:
+    file: password.txt
