@@ -1,0 +1,35 @@
+notebooks/
+
+# Ignore raw data files
+*.csv
+*.tsv
+*.txt
+*.xls
+*.xlsx
+*.json
+*.xml
+*.parquet
+*.pkl
+*.zip
+
+# Ignore all database files
+*.db
+*.sqlite
+*.sqlite3
+*.dbf
+*.db-journal
+*.ddb
+*.wal
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+
+# Exeptions
+!requirements.txt
+# Ignore environment file
+.yaml
+.env
+.venv/
+.vscode/
