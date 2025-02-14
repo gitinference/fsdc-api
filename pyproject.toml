@@ -5,5 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "altair[all]>=5.5.0",
+    "duckdb>=1.2.0",
     "fastapi[standard]>=0.115.8",
+    "ibis-framework[duckdb,geospatial,postgres]>=10.0.0",
+    "pandas>=2.2.3",
+    "polars>=1.22.0",
+    "requests>=2.32.3",
+    "tqdm>=4.67.1",
 ]
