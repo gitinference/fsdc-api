@@ -7,4 +7,4 @@ router = APIRouter()
 
 @router.get("/data/")
 async def get_calaries_data():
-    return DataCal().gen_nuti_data().to_pandas().to_json()
+    return DataCal().gen_nuti_data().to_pandas().to_dict()
