@@ -38,17 +38,6 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/db-password
       POSTGRES_DB: postgres
       POSTGRES_PORT: 5555
-
-    volumes:
-      - data_folder:/app/data
-    ports:
-      - 8051:8000
-    networks:
-      - api_network
-    depends_on:
-      database:
-        condition: service_healthy
-
 networks:
   api_network:
 
