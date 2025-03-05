@@ -4,7 +4,7 @@ from .routers import data, files, graphs
 
 app = FastAPI()
 
-origins = ["http://localhost:3000", "http://192.168.50.24:5751"]
+origins = ["http://localhost:3000", "http://192.168.50.24:5751", "fsdc.econlabs.net", "https://www.uprm.edu"]
 
 app.include_router(data.router)
 app.include_router(files.router)
