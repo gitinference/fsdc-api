@@ -18,3 +18,8 @@ async def gen_security_graph(year: int, var: str):
         year=year, var=var, type="linear", title="Security Map"
     )
     return chart.to_html()
+
+
+@router.get("/graph/price", response_class=HTMLResponse)
+async def get_price_graph():
+    return DataCal().gen_graphs_price_change().to_html()
