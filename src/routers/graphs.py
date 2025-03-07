@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.get("/graph/nutrition", response_class=HTMLResponse)
 async def get_calaries_data():
-    return DataCal().gen_graphs().to_html()
+    return DataCal().gen_graphs_nuti_data().to_html()
 
 
 @router.get("/graph/security", response_class=HTMLResponse)
