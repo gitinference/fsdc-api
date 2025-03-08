@@ -1,6 +1,8 @@
 [submodule "src/submodules/fsdc_calories"]
 	path = src/submodules/fsdc_calories
 	url = https://github.com/EconLabs/fsdc-calories.git
+	branch = main
 [submodule "src/submodules/fsdc_security"]
 	path = src/submodules/fsdc_security
 	url = https://github.com/EconLabs/fsdc-security.git
+	branch = main
