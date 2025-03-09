@@ -6,3 +6,6 @@
 	path = src/submodules/fsdc_security
 	url = https://github.com/EconLabs/fsdc-security.git
 	branch = main
+[submodule "src/submodules/pr-food"]
+	path = src/submodules/pr-food
+	url = https://github.com/ouslan/pr-food.git
