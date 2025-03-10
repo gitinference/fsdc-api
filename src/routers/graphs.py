@@ -24,13 +24,13 @@ class FoodGraphModel(str, Enum):
 
 @router.get("/graph/nutrition", response_class=HTMLResponse)
 async def get_calaries_data():
-    return DataCal().gen_graphs_nuti_data().to_html()
+    return DataCal(database_file="data/data.ddb").gen_graphs_nuti_data().to_html()
 
 
 @router.get("/graph/security", response_class=HTMLResponse)
 # the available variables
 async def gen_security_graph(year: int, var: SecurityGraphModel):
-    chart = DataSecurity().gen_graph(
+    chart = DataSecurity(database_file="data/data.ddb").gen_graph(
         year=year, var=var.value, type="linear", title="Security Map"
     )
     return chart.to_html()
@@ -39,7 +39,7 @@ async def gen_security_graph(year: int, var: SecurityGraphModel):
 @router.get("/graph/food", response_class=HTMLResponse)
 async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
     return (
-        FoodDeseart()
+        FoodDeseart(database_file="data/data.ddb")
         .gen_food_graph(var=var.value, year=year, qtr=qtr, title=title)
         .to_html()
     )
@@ -47,9 +47,9 @@ async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
 
 @router.get("/graph/price", response_class=HTMLResponse)
 async def get_price_graph():
-    return DataCal().gen_graphs_price_change().to_html()
+    return DataCal(database_file="data/data.ddb").gen_graphs_price_change().to_html()
 
 
 @router.get("/graph/myplate", response_class=HTMLResponse)
 async def get_myplate_graph():
-    return DataCal().gen_graphs_plate().to_html()
+    return DataCal(database_file="data/data.ddb").gen_graphs_plate().to_html()
