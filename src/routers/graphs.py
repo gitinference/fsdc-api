@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
+
 from ..submodules.fsdc_calories.src.data_process import DataCal
 from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
 from ..submodules.pr_food.src.data.data_process import FoodDeseart
@@ -27,3 +28,8 @@ async def gen_food_graph(var: str, year: int, qtr: int, title):
     return (
         FoodDeseart().gen_food_graph(var=var, year=year, qtr=qtr, title=title).to_html()
     )
+
+
+@router.get("/graph/price", response_class=HTMLResponse)
+async def get_price_graph():
+    return DataCal().gen_graphs_price_change().to_html()

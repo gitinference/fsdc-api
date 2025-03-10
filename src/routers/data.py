@@ -15,3 +15,15 @@ async def get_calaries_data():
 async def get_security_data():
     df = DataSecurity().calc_security()
     return df[["year", "geoid"]].to_dict()
+
+
+@router.get("/data/price")
+async def get_price_data():
+    imports, exports = DataCal().gen_price_rankings()
+
+    # Drop nan since they are not JSON compliant for the default FastAPI serialization library
+    imports = imports.dropna()
+    exports = exports.dropna()
+
+    response = {"import_data": imports.to_dict(), "export_data": exports.to_dict()}
+    return response
