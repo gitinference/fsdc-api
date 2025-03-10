@@ -13,7 +13,7 @@ anyio==4.8.0
     #   httpx
     #   starlette
     #   watchfiles
-anywidget==0.9.14
+anywidget==0.9.15
     # via altair
 arro3-core==0.4.5
     # via vegafusion
@@ -32,6 +32,8 @@ certifi==2025.1.31
     #   pyogrio
     #   pyproj
     #   requests
+chardet==5.2.0
+    # via fsdc-api (pyproject.toml)
 charset-normalizer==3.4.1
     # via requests
 click==8.1.8
@@ -46,22 +48,28 @@ decorator==5.2.1
     # via ipython
 dnspython==2.7.0
     # via email-validator
-duckdb==1.2.0
+duckdb==1.2.1
     # via
     #   fsdc-api (pyproject.toml)
     #   ibis-framework
 email-validator==2.2.0
     # via fastapi
+et-xmlfile==2.0.0
+    # via openpyxl
 executing==2.2.0
     # via stack-data
-fastapi==0.115.8
+fastapi==0.115.11
     # via fsdc-api (pyproject.toml)
 fastapi-cli==0.0.7
     # via fastapi
+fastexcel==0.13.0
+    # via fsdc-api (pyproject.toml)
 geoarrow-types==0.2.0
     # via ibis-framework
 geopandas==1.0.1
     # via ibis-framework
+greenlet==3.1.1
+    # via sqlalchemy
 h11==0.14.0
     # via
     #   httpcore
@@ -72,7 +80,7 @@ httptools==0.6.4
     # via uvicorn
 httpx==0.28.1
     # via fastapi
-ibis-framework==10.1.0
+ibis-framework==10.2.0
     # via fsdc-api (pyproject.toml)
 idna==3.10
     # via
@@ -80,8 +88,10 @@ idna==3.10
     #   email-validator
     #   httpx
     #   requests
-ipython==8.32.0
+ipython==9.0.2
     # via ipywidgets
+ipython-pygments-lexers==1.1.1
+    # via ipython
 ipywidgets==8.1.5
     # via anywidget
 jedi==0.19.2
@@ -106,7 +116,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mercantile==1.2.1
     # via altair-tiles
-narwhals==1.28.0
+narwhals==1.30.0
     # via
     #   altair
     #   vegafusion
@@ -118,6 +128,8 @@ numpy==2.2.3
     #   pandas
     #   pyogrio
     #   shapely
+openpyxl==3.1.5
+    # via fsdc-api (pyproject.toml)
 packaging==24.2
     # via
     #   altair
@@ -138,14 +150,10 @@ parsy==2.1
     # via ibis-framework
 pexpect==4.9.0
     # via ipython
-polars==1.23.0
+polars==1.24.0
     # via fsdc-api (pyproject.toml)
 prompt-toolkit==3.0.50
     # via ipython
-psycopg==3.2.5
-    # via ibis-framework
-psycopg-binary==3.2.5
-    # via psycopg
 psygnal==0.12.0
     # via anywidget
 ptyprocess==0.7.0
@@ -155,16 +163,20 @@ pure-eval==0.2.3
 pyarrow==19.0.1
     # via
     #   altair
+    #   fastexcel
     #   ibis-framework
 pyarrow-hotfix==0.6
     # via ibis-framework
 pydantic==2.10.6
-    # via fastapi
+    # via
+    #   fastapi
+    #   sqlmodel
 pydantic-core==2.27.2
     # via pydantic
 pygments==2.19.1
     # via
     #   ipython
+    #   ipython-pygments-lexers
     #   rich
 pyogrio==0.10.0
     # via geopandas
@@ -190,6 +202,8 @@ referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
+regex==2024.11.6
+    # via ibis-framework
 requests==2.32.3
     # via fsdc-api (pyproject.toml)
 rich==13.9.4
@@ -213,11 +227,15 @@ six==1.17.0
     # via python-dateutil
 sniffio==1.3.1
     # via anyio
-sqlglot==26.6.0
+sqlalchemy==2.0.38
+    # via sqlmodel
+sqlglot==26.9.0
     # via ibis-framework
+sqlmodel==0.0.24
+    # via fsdc-api (pyproject.toml)
 stack-data==0.6.3
     # via ipython
-starlette==0.45.3
+starlette==0.46.1
     # via fastapi
 toolz==1.0.0
     # via ibis-framework
@@ -229,7 +247,7 @@ traitlets==5.14.3
     #   ipython
     #   ipywidgets
     #   matplotlib-inline
-typer==0.15.1
+typer==0.15.2
     # via fastapi-cli
 typing-extensions==4.12.2
     # via
@@ -240,6 +258,7 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   rich-toolkit
+    #   sqlalchemy
     #   typer
 tzdata==2025.1
     # via pandas
@@ -261,7 +280,7 @@ watchfiles==1.0.4
     # via uvicorn
 wcwidth==0.2.13
     # via prompt-toolkit
-websockets==15.0
+websockets==15.0.1
     # via uvicorn
 widgetsnbextension==4.0.13
     # via ipywidgets
