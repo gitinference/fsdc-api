@@ -48,3 +48,8 @@ async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
 @router.get("/graph/price", response_class=HTMLResponse)
 async def get_price_graph():
     return DataCal(database_file="data/data.ddb").gen_graphs_price_change().to_html()
+
+
+@router.get("/graph/myplate", response_class=HTMLResponse)
+async def get_myplate_graph():
+    return DataCal(database_file="data/data.ddb").gen_graphs_plate().to_html()
