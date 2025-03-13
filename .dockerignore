@@ -1,4 +1,5 @@
 notebooks/
+data/raw/
 
 # Ignore raw data files
 *.csv
