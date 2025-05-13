@@ -1,60 +1,22 @@
 services:
-  database:
-    image: postgres:17
-    container_name: api_database
-    restart: always
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
-    secrets:
-      - db-password
-    ports:
-      - 5555:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
-      POSTGRES_DB: postgres
-    volumes:
-      - database_volume:/var/lib/postgresql/data
-    networks:
-      - api_network
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-
-  api:
-    container_name: FastAPI
+  fsdc_api_staging:
+    container_name: fsdc_api_staging
     build:
       context: .
     ports:
-      - 5071:8000
-    restart: always
-    secrets:
-      - db-password
+      - 5073:8000
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
-      POSTGRES_DB: postgres
-      POSTGRES_PORT: 5555
-
-  webapp:
-    container_name: fsdc_webapp
-    image: ghcr.io/econlabs/econlabs/fsdc-webapp:staging
-    restart: always
-    ports:
-      - 5070:3000
-
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD:  ${POSTGRES_PASSWORD}
+      POSTGRES_DB: fsdc_db_staging
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST: postgres
+    labels:
+        - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - postgres_network
+    volumes:
+      - ./data_staging:/app/data
 networks:
-  api_network:
-
-volumes:
-  database_volume:
-  data_folder:
-
-secrets:
-  db-password:
-    file: password.txt
+  postgres_network:
+    external: true
