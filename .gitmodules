@@ -1,9 +1,12 @@
 [submodule "src/submodules/fsdc_calories"]
 	path = src/submodules/fsdc_calories
 	url = https://github.com/gitinference/fsdc-calories.git
+	branch = main
 [submodule "src/submodules/fsdc_security"]
 	path = src/submodules/fsdc_security
 	url = https://github.com/gitinference/fsdc-security
+	branch = main
 [submodule "src/submodules/pr_food"]
 	path = src/submodules/pr_food
 	url = https://github.com/ouslan/pr-food.git
+	branch = main
