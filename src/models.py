@@ -20,7 +20,9 @@ class SubdisciplineUpdate(SQLModel):
 
 class Subdiscipline(SubdisciplineBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    research_entries: list["ResearchEntry"] = Relationship(back_populates="subdiscipline")
+    research_entries: list["ResearchEntry"] = Relationship(
+        back_populates="subdiscipline"
+    )
 
 
 class SubdisciplinePublic(SubdisciplineBase):
@@ -32,7 +34,7 @@ class ResearcherBase(SQLModel):
     fname: str
     lname: str
     education: str
-    phone: int
+    phone: str
     email: str
 
 
@@ -44,7 +46,7 @@ class ResearcherUpdate(SQLModel):
     fname: str | None = None
     lname: str | None = None
     education: str | None = None
-    phone: int | None = None
+    phone: str | None = None
     email: str | None = None
 
 
@@ -153,4 +155,3 @@ class ResearchEntryPublic(ResearchEntryBase):
     researcher_id: uuid.UUID
     codebook_id: uuid.UUID
     dataset_id: uuid.UUID
-
