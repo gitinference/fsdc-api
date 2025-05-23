@@ -1,21 +1,62 @@
-# src/research_bank/research_entries.py
+from __future__ import annotations
+
+import uuid
+from typing import List
+
 from fastapi import APIRouter, Depends, status
+from sqlalchemy.orm import selectinload
 from sqlmodel import Session, select
-from src.models import ResearchEntry, ResearchEntryCreate
+
 from src.core.db import get_session
+from src.models import (
+    ResearchEntry,
+    ResearchEntryBase,
+    ResearchEntryCreate,
+    SubdisciplinePublic,
+    ResearcherPublic,
+    CodebookPublic,
+    DatasetPublic,
+)
 
-router = APIRouter(prefix="/research-entries", tags=["ResearchEntries"])
+router = APIRouter(prefix="/research-entries", tags=["Research Entries"])
 
 
-@router.get("/", response_model=list[ResearchEntry])
-def list_research_entries(session: Session = Depends(get_session)):
-    return session.exec(select(ResearchEntry)).all()
+class ResearchEntryNested(ResearchEntryBase):
+    id: uuid.UUID
+    subdiscipline: SubdisciplinePublic
+    researcher: ResearcherPublic
+    codebook: CodebookPublic
+    dataset: DatasetPublic
+
+    class Config:
+        orm_mode = True
 
 
-@router.post("/", response_model=ResearchEntry, status_code=status.HTTP_201_CREATED)
-def create_research_entry(data: ResearchEntryCreate, session: Session = Depends(get_session)):
+@router.get("/", response_model=List[ResearchEntryNested])
+def list_entries(session: Session = Depends(get_session)):
+    stmt = select(ResearchEntry).options(
+        selectinload(ResearchEntry.subdiscipline),
+        selectinload(ResearchEntry.researcher),
+        selectinload(ResearchEntry.codebook),
+        selectinload(ResearchEntry.dataset),
+    )
+    return session.exec(stmt).all()
+
+
+@router.post(
+    "/", response_model=ResearchEntryNested, status_code=status.HTTP_201_CREATED
+)
+def create_entry(data: ResearchEntryCreate, session: Session = Depends(get_session)):
     obj = ResearchEntry.model_validate(data)
     session.add(obj)
     session.commit()
-    session.refresh(obj)
+    session.refresh(
+        obj,
+        [
+            ResearchEntry.subdiscipline,
+            ResearchEntry.researcher,
+            ResearchEntry.codebook,
+            ResearchEntry.dataset,
+        ],
+    )
     return obj
