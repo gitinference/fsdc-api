@@ -4,9 +4,9 @@ from src.routers import data, files, graphs
 from src.routers.research_bank import (
     subdisciplines,
     researchers,
-    # codebooks,
-    # datasets,
-    # research_entries,
+    codebooks,
+    datasets,
+    research_entries,
 )
 from src.core.db import init_db
 
@@ -27,9 +27,9 @@ app.include_router(files.router)
 app.include_router(graphs.router)
 app.include_router(subdisciplines.router)
 app.include_router(researchers.router)
-# app.include_router(codebooks.router)
-# app.include_router(datasets.router)
-# app.include_router(research_entries.router)
+app.include_router(codebooks.router)
+app.include_router(datasets.router)
+app.include_router(research_entries.router)
 
 app.add_middleware(
     CORSMiddleware,
