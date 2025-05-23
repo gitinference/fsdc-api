@@ -1,14 +1,18 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from .routers import data, files, graphs
-from .research_bank import (
+from src.routers import data, files, graphs
+from src.routers.research_bank import (
     subdisciplines,
     researchers,
-    codebooks,
-    datasets,
-    research_entries,
+    # codebooks,
+    # datasets,
+    # research_entries,
 )
+from src.core.db import init_db
+
 app = FastAPI()
+init_db()
+
 
 origins = [
     "http://localhost:3000",
