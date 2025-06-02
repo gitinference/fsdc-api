@@ -52,4 +52,23 @@ async def get_price_graph():
 
 @router.get("/graph/myplate", response_class=HTMLResponse)
 async def get_myplate_graph():
-    return DataCal(database_file="data/data.ddb").gen_graphs_plate().to_html()
+    chart_html = DataCal(database_file="data/data.ddb").gen_graphs_plate().to_html()
+
+    css_patch = """
+    <style>
+    #vis.vega-embed {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    #vis.vega-embed > div {
+        margin: 0 auto !important;
+    }
+    </style>
+    """
+
+    # Inject right after the <head> tag
+    chart_html = chart_html.replace("<head>", f"<head>{css_patch}")
+
+    return chart_html
