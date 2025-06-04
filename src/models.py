@@ -131,6 +131,7 @@ class ResearchEntryUpdate(SQLModel):
     researcher_id: uuid.UUID | None = None
     codebook_id: uuid.UUID | None = None
     dataset_id: uuid.UUID | None = None
+    approved: bool | None = None
 
 
 class ResearchEntry(ResearchEntryBase, table=True):
@@ -147,6 +148,8 @@ class ResearchEntry(ResearchEntryBase, table=True):
 
     dataset_id: uuid.UUID = Field(foreign_key="dataset.id")
     dataset: Dataset = Relationship(back_populates="research_entries")
+
+    approved: bool = Field(default=False)
 
 
 class ResearchEntryPublic(ResearchEntryBase):
