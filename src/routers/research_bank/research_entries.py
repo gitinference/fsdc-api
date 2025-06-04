@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import uuid
-from typing import List
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import selectinload
@@ -33,13 +33,18 @@ class ResearchEntryNested(ResearchEntryBase):
 
 
 @router.get("/", response_model=List[ResearchEntryNested])
-def list_entries(session: Session = Depends(get_session)):
+def list_entries(
+    session: Session = Depends(get_session),
+    approved: Optional[bool] = None,  # Add query parameter for filtering
+):
     stmt = select(ResearchEntry).options(
         selectinload(ResearchEntry.subdiscipline),
         selectinload(ResearchEntry.researcher),
         selectinload(ResearchEntry.codebook),
         selectinload(ResearchEntry.dataset),
     )
+    if approved is not None:
+        stmt = stmt.where(ResearchEntry.approved == approved)  # Filter by 'approved'
     return session.exec(stmt).all()
 
 
