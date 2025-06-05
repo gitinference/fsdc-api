@@ -3,6 +3,8 @@ import os
 
 load_dotenv()
 
+MEDIA_ROOT = os.getenv("MEDIA_ROOT")
+
 
 # Get the Database credentials
 def get_db_credentials() -> list:
