@@ -46,11 +46,11 @@ def _seed_initial_data(session: Session) -> None:
         email="luis.ramos@example.com",
     )
 
-    cb_fs = Codebook(file="codebook_food_security.pdf")
-    cb_nt = Codebook(file="codebook_nutrition.pdf")
+    cb_fs = Codebook(file_name="codebook_food_security.pdf")
+    cb_nt = Codebook(file_name="codebook_nutrition.pdf")
 
-    ds_fs = Dataset(file="dataset_food_security.csv")
-    ds_nt = Dataset(file="dataset_nutrition.csv")
+    ds_fs = Dataset(file_name="dataset_food_security.csv")
+    ds_nt = Dataset(file_name="dataset_nutrition.csv")
 
     session.add_all([sub_fs, sub_nt, res_ana, res_luis, cb_fs, cb_nt, ds_fs, ds_nt])
     session.commit()
