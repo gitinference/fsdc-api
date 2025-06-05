@@ -55,13 +55,5 @@ def create_entry(data: ResearchEntryCreate, session: Session = Depends(get_sessi
     obj = ResearchEntry.model_validate(data)
     session.add(obj)
     session.commit()
-    session.refresh(
-        obj,
-        [
-            ResearchEntry.subdiscipline,
-            ResearchEntry.researcher,
-            ResearchEntry.codebook,
-            ResearchEntry.dataset,
-        ],
-    )
+    session.refresh(obj)
     return obj
