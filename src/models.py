@@ -1,3 +1,4 @@
+from typing import Optional
 import uuid
 from datetime import date, datetime
 from sqlmodel import Field, SQLModel, Relationship
@@ -61,7 +62,8 @@ class ResearcherPublic(ResearcherBase):
 
 # ---------- Codebook ----------
 class CodebookBase(SQLModel):
-    file: str
+    file_name: str
+    file_path: Optional[str]
 
 
 class CodebookCreate(CodebookBase):
@@ -69,12 +71,14 @@ class CodebookCreate(CodebookBase):
 
 
 class CodebookUpdate(SQLModel):
-    file: str | None = None
+    file_name: str | None = None
+    file_path: str | None = None
 
 
 class Codebook(CodebookBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     uploaded_at: datetime = Field(default_factory=datetime.utcnow)
+    file_path: Optional[str] = Field(default=None, nullable=True)
     research_entries: list["ResearchEntry"] = Relationship(back_populates="codebook")
 
 
@@ -85,7 +89,8 @@ class CodebookPublic(CodebookBase):
 
 # ---------- Dataset ----------
 class DatasetBase(SQLModel):
-    file: str
+    file_name: str
+    file_path: Optional[str]
 
 
 class DatasetCreate(DatasetBase):
@@ -93,12 +98,14 @@ class DatasetCreate(DatasetBase):
 
 
 class DatasetUpdate(SQLModel):
-    file: str | None = None
+    file_name: str | None = None
+    file_path: str | None = None
 
 
 class Dataset(DatasetBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     uploaded_at: datetime = Field(default_factory=datetime.utcnow)
+    file_path: Optional[str] = Field(default=None, nullable=True)
     research_entries: list["ResearchEntry"] = Relationship(back_populates="dataset")
 
 
