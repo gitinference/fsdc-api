@@ -34,7 +34,7 @@ def create_codebook(
     return codebook
 
 
-@router.get("/{id}", response_model=Codebook)
+@router.get("/{id}")
 async def get_codebook_by_id(id: uuid.UUID, session: Session = Depends(get_session)):
     codebook = session.exec(select(Codebook).where(Codebook.id == id)).first()
     if not codebook:

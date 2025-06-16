@@ -34,7 +34,7 @@ def create_dataset(
     return dataset
 
 
-@router.get("/{id}", response_model=Dataset)
+@router.get("/{id}")
 async def get_dataset_by_id(id: uuid.UUID, session: Session = Depends(get_session)):
     codebook = session.exec(select(Dataset).where(Dataset.id == id)).first()
     if not codebook:
