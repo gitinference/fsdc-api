@@ -70,7 +70,7 @@ def update_entry(
 ):
     obj = session.get(ResearchEntry, id)
     if not obj:
-        raise HTTPException(status_code=404, detail="ResearchEntry not found")
+        raise HTTPException(status_code=404, detail=f"ResearchEntry {id} not found")
 
     data_dict = data.model_dump(exclude_unset=True)
     for key, value in data_dict.items():
