@@ -20,10 +20,9 @@ def get_session():
 
 
 def _seed_initial_data(session: Session) -> None:
-
-    # # if db alraeady had data, exit.
-    # if session.exec(select(Subdiscipline)).first():
-    #     return
+    # if db alraeady had data, exit.
+    if session.exec(select(Subdiscipline)).first():
+        return
 
     # --- Core reference tables ----------
     sub_fs = Subdiscipline(
