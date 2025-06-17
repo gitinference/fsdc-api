@@ -25,6 +25,7 @@ origins = [
     "http://localhost:3000",
     "http://192.168.50.24:5751",
     "https://fsdc.econlabs.net",
+    "https://fsdc-webapp.econlabs.net",
     "https://uprm.edu",
     "https://www.uprm.edu/foodsecuritydatacenter/series-de-tiempo/",
 ]
