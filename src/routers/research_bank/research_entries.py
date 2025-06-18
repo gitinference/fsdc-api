@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Path, status
 from sqlalchemy.orm import selectinload
 from sqlmodel import Session, select
 
@@ -12,6 +12,7 @@ from src.models import (
     ResearchEntry,
     ResearchEntryBase,
     ResearchEntryCreate,
+    ResearchEntryUpdate,
     SubdisciplinePublic,
     ResearcherPublic,
     CodebookPublic,
@@ -55,13 +56,27 @@ def create_entry(data: ResearchEntryCreate, session: Session = Depends(get_sessi
     obj = ResearchEntry.model_validate(data)
     session.add(obj)
     session.commit()
-    session.refresh(
-        obj,
-        [
-            ResearchEntry.subdiscipline,
-            ResearchEntry.researcher,
-            ResearchEntry.codebook,
-            ResearchEntry.dataset,
-        ],
-    )
+    session.refresh(obj)
+    return obj
+
+
+@router.put(
+    "/{id}", response_model=ResearchEntryNested, status_code=status.HTTP_201_CREATED
+)
+def update_entry(
+    id: uuid.UUID = Path(...),
+    data: ResearchEntryUpdate = Body(...),
+    session: Session = Depends(get_session),
+):
+    obj = session.get(ResearchEntry, id)
+    if not obj:
+        raise HTTPException(status_code=404, detail=f"ResearchEntry {id} not found")
+
+    data_dict = data.model_dump(exclude_unset=True)
+    for key, value in data_dict.items():
+        setattr(obj, key, value)
+
+    session.add(obj)
+    session.commit()
+    session.refresh(obj)
     return obj

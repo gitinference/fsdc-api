@@ -1,14 +1,21 @@
-from fastapi.middleware.cors import CORSMiddleware
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from src.core.db import init_db
 from src.routers import data, files, graphs
 from src.routers.research_bank import (
-    subdisciplines,
-    researchers,
     codebooks,
     datasets,
     research_entries,
+    researchers,
+    subdisciplines,
 )
-from src.core.db import init_db
+
+load_dotenv()
+
 
 app = FastAPI()
 init_db()
@@ -17,10 +24,15 @@ init_db()
 origins = [
     "http://localhost:3000",
     "http://192.168.50.24:5751",
-    "fsdc.econlabs.net",
-    "uprm.edu",
+    "https://fsdc.econlabs.net",
+    "https://fsdc-webapp.econlabs.net",
+    "https://uprm.edu",
     "https://www.uprm.edu/foodsecuritydatacenter/series-de-tiempo/",
 ]
+
+if os.getenv("DEV", "True").lower() == "true":
+    origins = ["*"]
+
 
 app.include_router(data.router)
 app.include_router(files.router)
@@ -35,7 +47,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["DELETE", "GET", "POST", "PUT"],
     allow_headers=["*"],
 )
 
