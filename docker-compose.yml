@@ -11,6 +11,12 @@ services:
       - pgdata_staging:/var/lib/postgresql/data
     networks:
       - postgres_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER" ]
+      interval: 5s
+      timeout: 30s
+      retries: 10
+      start_period: 5s
 
   fsdc_api_staging:
     container_name: fsdc_api_staging
@@ -26,7 +32,7 @@ services:
       - postgres_network
     volumes:
       - ./data_staging:/app/data
-
+      - .:/app
 volumes:
   pgdata_staging:
 
