@@ -6,7 +6,7 @@ from sqlmodel import Session, select
 from src.core.file_manager import FileManager
 from src.models import Codebook
 from src.core.db import get_session
-from env import MEDIA_ROOT
+from settings import MEDIA_ROOT
 
 router = APIRouter(prefix="/codebooks", tags=["Codebooks"])
 file_manager = FileManager(root_directory=MEDIA_ROOT)

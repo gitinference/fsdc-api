@@ -1,6 +1,6 @@
 from datetime import date
 from sqlmodel import Session, create_engine, SQLModel, select
-from env import get_db_credentials
+from settings import get_db_credentials
 
 from src.models import (
     Subdiscipline,
