@@ -22,4 +22,5 @@ dependencies = [
   "comtradeapicall>=1.2.1",
   "pysal>=25.1",
   "psycopg2-binary>=2.9.10",
+  "alembic>=1.16.2",
 ]
