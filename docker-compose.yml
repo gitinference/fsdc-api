@@ -19,6 +19,8 @@ services:
       start_period: 5s
 
   fsdc_api_staging:
+    depends_on:
+      - postgres
     container_name: fsdc_api_staging
     build:
       context: .
