@@ -3,7 +3,7 @@ import uuid
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from fastapi.responses import StreamingResponse
 from sqlmodel import Session, select
-from env import MEDIA_ROOT
+from settings import MEDIA_ROOT
 from src.core.file_manager import FileManager
 from src.models import Dataset, DatasetCreate
 from src.core.db import get_session
