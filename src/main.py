@@ -18,7 +18,6 @@ load_dotenv()
 
 
 app = FastAPI()
-init_db()
 
 
 origins = [
