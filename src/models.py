@@ -121,6 +121,17 @@ class ResearchEntryBase(SQLModel):
     description: str
     bibliography: str
 
+    # Additional fields
+    title: str
+    project_summary: str
+    time_period: str
+    thesis_advisor_name: str
+    thesis_advisor_email: str
+    thesis_advisor_phone: str
+    postal_address: str
+    department_and_faculty: str
+    orcid: str
+
 
 class ResearchEntryCreate(ResearchEntryBase):
     subdiscipline_id: uuid.UUID
@@ -134,6 +145,15 @@ class ResearchEntryUpdate(SQLModel):
     date_ended: date | None = None
     description: str | None = None
     bibliography: str | None = None
+    title: str | None = None
+    project_summary: str | None = None
+    time_period: str | None = None
+    thesis_advisor_name: str | None = None
+    thesis_advisor_email: str | None = None
+    thesis_advisor_phone: str | None = None
+    postal_address: str | None = None
+    department_and_faculty: str | None = None
+    orcid: str | None = None
     subdiscipline_id: uuid.UUID | None = None
     researcher_id: uuid.UUID | None = None
     codebook_id: uuid.UUID | None = None
