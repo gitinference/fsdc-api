@@ -20,7 +20,7 @@ def get_session():
 
 
 def _seed_initial_data(session: Session) -> None:
-    # if db alraeady had data, exit.
+    # if db already had data, exit.
     if session.exec(select(Subdiscipline)).first():
         return
 
@@ -56,6 +56,15 @@ def _seed_initial_data(session: Session) -> None:
 
     # --- Fact table --------
     re_fs = ResearchEntry(
+        title="Household Food Insecurity Study",
+        project_summary="Pilot study to evaluate food insecurity across rural Puerto Rico.",
+        time_period="2024",
+        thesis_advisor_name="Dr. Rosa Chávez Jáuregui",
+        thesis_advisor_email="rosa.chavez@upr.edu",
+        thesis_advisor_phone="787-832-4040 ext. 2960",
+        postal_address="University of Puerto Rico, Mayagüez PR 00681",
+        department_and_faculty="Department of Agroenvironmental Sciences",
+        orcid="0000-0000-0000-0001",
         date_started=date(2024, 1, 1),
         date_ended=date(2024, 6, 30),
         description="Pilot study measuring household food insecurity levels.",
@@ -67,6 +76,15 @@ def _seed_initial_data(session: Session) -> None:
     )
 
     re_nt = ResearchEntry(
+        title="Nutritional Intake of College Students",
+        project_summary="Survey-based analysis of macro- and micronutrient intake among UPRM students.",
+        time_period="2023",
+        thesis_advisor_name="Dr. Rosa Chávez Jáuregui",
+        thesis_advisor_email="rosa.chavez@upr.edu",
+        thesis_advisor_phone="787-832-4040 ext. 2960",
+        postal_address="University of Puerto Rico, Mayagüez PR 00681",
+        department_and_faculty="Department of Agroenvironmental Sciences",
+        orcid="0000-0000-0000-0002",
         date_started=date(2023, 3, 15),
         date_ended=date(2023, 12, 20),
         description="Cross-sectional survey of college students' nutritional intake.",
