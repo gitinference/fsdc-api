@@ -132,6 +132,9 @@ class ResearchEntryBase(SQLModel):
     department_and_faculty: str
     orcid: str
 
+    main_keyword: str
+    alternate_keywords: str
+
 
 class ResearchEntryCreate(ResearchEntryBase):
     subdiscipline_id: uuid.UUID
@@ -146,6 +149,8 @@ class ResearchEntryUpdate(SQLModel):
     description: str | None = None
     bibliography: str | None = None
     title: str | None = None
+    main_keyword: str | None = None
+    alternate_keywords: str | None = None
     project_summary: str | None = None
     time_period: str | None = None
     thesis_advisor_name: str | None = None
