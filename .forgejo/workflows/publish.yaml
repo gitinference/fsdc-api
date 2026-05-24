@@ -1,0 +1,58 @@
+name: Production Docker Image
+
+on:
+  push:
+    branches:
+      - PRODUCTION
+
+jobs:
+  build:
+    runs-on: local
+
+    steps:
+      - name: Checkout code with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Initialize nested submodules
+        run: |
+          git submodule update --init --recursive
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # Remember to change 'your-dockerhub-namespace' to your actual Docker Hub username/org
+          tags: your-dockerhub-namespace/fsdc-api:production
+
+      - name: Notify ntfy
+        if: always()
+        env:
+          NTFY_URL: ${{ secrets.NTFY_URL }}
+          NTFY_AUTH: ${{ secrets.NTFY_AUTH }}
+        run: |
+          if [[ "${{ job.status }}" == "success" ]]; then
+            TITLE="🚀 Docker Build: Success"
+            TAGS="rocket,package"
+          else
+            TITLE="❌ Docker Build: Failed"
+            TAGS="warning,boom"
+          fi
+
+          curl \
+            -H "Authorization: Bearer $NTFY_AUTH" \
+            -H "Title: $TITLE" \
+            -H "Tags: $TAGS" \
+            -H "Click: ${{ github.server_url }}/${{ github.repository }}/actions" \
+            -d "Repo: ${{ github.repository }}
+          Status: ${{ job.status }}
+          Image pushed to Docker Hub via Forgejo runner." \
+            "$NTFY_URL"
