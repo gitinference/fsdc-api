@@ -3,7 +3,8 @@ name: Production Docker Image
 on:
   push:
     branches:
-      - PRODUCTION
+      - main
+      - 1-docker-pack
 
 jobs:
   build:
