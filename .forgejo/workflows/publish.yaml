@@ -9,8 +9,19 @@ on:
 jobs:
   build:
     runs-on: local
+    container:
+      image: ubuntu:22.04
+      env:
+        DOCKER_HOST: tcp://docker-in-docker:2375
+
 
     steps:
+      - name: Install Docker CLI & Git Dependencies
+        run: |
+          apt-get update && apt-get install -y curl git
+          # Install just the docker CLI binary
+          curl -fsSL https://get.docker.com | sh
+
       - name: Checkout code with submodules
         uses: actions/checkout@v4
         with:
