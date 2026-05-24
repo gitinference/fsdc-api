@@ -23,6 +23,7 @@ dependencies = [
   "pysal>=25.1",
   "psycopg2-binary>=2.9.10",
   "alembic>=1.16.2",
+  "fsdc-security>=0.2.2",
 ]
 
 [dependency-groups]

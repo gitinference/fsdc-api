@@ -1029,6 +1029,7 @@ dependencies = [
     { name = "duckdb" },
     { name = "fastapi", extra = ["standard"] },
     { name = "fastexcel" },
+    { name = "fsdc-security" },
     { name = "ibis-framework", extra = ["duckdb", "geospatial", "sqlite"] },
     { name = "openpyxl" },
     { name = "pandas" },
@@ -1056,6 +1057,7 @@ requires-dist = [
     { name = "duckdb", specifier = ">=1.2.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.8" },
     { name = "fastexcel", specifier = ">=0.12.1" },
+    { name = "fsdc-security", specifier = ">=0.2.2" },
     { name = "ibis-framework", extras = ["duckdb", "geospatial"], specifier = ">=10.0.0" },
     { name = "ibis-framework", extras = ["duckdb", "geospatial", "sqlite"], specifier = ">=9.0.0" },
     { name = "openpyxl", specifier = ">=3.1.5" },
@@ -1073,6 +1075,15 @@ dev = [
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "pre-commit", specifier = ">=4.6.0" },
     { name = "pynvim", specifier = ">=0.6.0" },
+]
+
+[[package]]
+name = "fsdc-security"
+version = "0.2.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/70/6d/7aa260d60751d7da91a3d2b8823e8f75f1fc377b553ed7efb744b4d7c5ce/fsdc_security-0.2.2.tar.gz", hash = "sha256:c64cf0a0c59b7769b1a94a04a7e1e8c7d1d066b857b46e460a32f6b16a606412", size = 18871, upload-time = "2025-12-22T19:19:00.326Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0d/2b/863a18ca89b8a97576580164cac7c10723f1b3aaa4ff5d1a29115584ff47/fsdc_security-0.2.2-py3-none-any.whl", hash = "sha256:1c9b20b1d33835274f8b762799bdcb981d0e946fcf5438060c67455b3d153883", size = 13740, upload-time = "2025-12-22T19:18:59.455Z" },
 ]
 
 [[package]]
