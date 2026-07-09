@@ -26,6 +26,19 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# Database files 
+*.sqlite3
+*.db
+*.sqlite
+*.ddb
+*.wal
+*.csv
+*.txt
+*.parquet
+
+# Exeption for requirements
+!requirements.txt
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -161,14 +174,17 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Raw data files
-*.csv 
-*.ddb 
-*.wal
-*.zip
-*.parquet
-*.json
-data/raw/*
+# ignore mac files
+*.DS_Store
+
+# ignore quarter files 
+# vscode
+.vscode
+data_process.log
+docs/aux/*
+docs/out/*
+qcew
+
 # Devenv
 .devenv*
 devenv.local.nix
