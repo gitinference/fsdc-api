@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse
 
 from ..submodules.fsdc_calories.src.data_process import DataCal
 from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
-from ..submodules.pr_food.src.data.data_process import FoodDeseart
+from prfood_repl import FoodDeseart
 
 router = APIRouter()
 

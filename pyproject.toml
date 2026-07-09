@@ -20,9 +20,10 @@ dependencies = [
   "sqlmodel>=0.0.22",
   "tqdm>=4.67.1",
   "comtradeapicall>=1.2.1",
-  "pysal>=25.1",
   "psycopg2-binary>=2.9.10",
   "alembic>=1.16.2",
+  "prfood-repl>=1.0.1",
+  "fsdc-calories>=0.8.0",
 ]
 
 [dependency-groups]
