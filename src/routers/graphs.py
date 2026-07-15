@@ -3,7 +3,7 @@ from enum import Enum
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 
-from ..submodules.fsdc_calories.src.data_process import DataCal
+from fsdc_calories import DataCal
 from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
 from prfood_repl import FoodDeseart
 
@@ -24,7 +24,7 @@ class FoodGraphModel(str, Enum):
 
 @router.get("/graph/nutrition", response_class=HTMLResponse)
 async def get_calaries_data():
-    return DataCal(database_file="data/data.ddb").gen_graphs_nuti_data().to_html()
+    return DataCal().gen_graphs_nuti_data().to_html()
 
 
 @router.get("/graph/security", response_class=HTMLResponse)
@@ -39,7 +39,7 @@ async def gen_security_graph(year: int, var: SecurityGraphModel):
 @router.get("/graph/food", response_class=HTMLResponse)
 async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
     return (
-        FoodDeseart(database_file="data/data.ddb")
+        FoodDeseart()
         .gen_food_graph(var=var.value, year=year, qtr=qtr, title=title)
         .to_html()
     )
@@ -47,12 +47,12 @@ async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
 
 @router.get("/graph/price", response_class=HTMLResponse)
 async def get_price_graph():
-    return DataCal(database_file="data/data.ddb").gen_graphs_price_change().to_html()
+    return DataCal().gen_graphs_price_change().to_html()
 
 
 @router.get("/graph/myplate", response_class=HTMLResponse)
 async def get_myplate_graph():
-    chart_html = DataCal(database_file="data/data.ddb").gen_graphs_plate().to_html()
+    chart_html = DataCal().gen_graphs_plate().to_html()
 
     css_patch = """
     <style>
