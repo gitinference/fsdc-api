@@ -882,6 +882,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "fastexcel" },
     { name = "fsdc-calories" },
+    { name = "fsdc-security" },
     { name = "ibis-framework", extra = ["duckdb", "geospatial", "sqlite"] },
     { name = "openpyxl" },
     { name = "pandas" },
@@ -910,6 +911,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.8" },
     { name = "fastexcel", specifier = ">=0.12.1" },
     { name = "fsdc-calories", specifier = ">=0.8.0" },
+    { name = "fsdc-security", specifier = ">=0.3.2" },
     { name = "ibis-framework", extras = ["duckdb", "geospatial"], specifier = ">=10.0.0" },
     { name = "ibis-framework", extras = ["duckdb", "geospatial", "sqlite"], specifier = ">=9.0.0" },
     { name = "openpyxl", specifier = ">=3.1.5" },
@@ -931,7 +933,7 @@ dev = [
 
 [[package]]
 name = "fsdc-calories"
-version = "0.10.0"
+version = "0.10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "altair", extra = ["all"] },
@@ -939,9 +941,29 @@ dependencies = [
     { name = "fastexcel" },
     { name = "jp-imports" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/25/1d/b25657c22a7d98c429574a2bb4414a9e4e5fc543ee0629d86b45e7c72f60/fsdc_calories-0.10.0.tar.gz", hash = "sha256:94eeadf58279db195d3da25dc3c032812cebadb39f04d713de565995728d4e7d", size = 23650, upload-time = "2026-07-15T14:29:21.832Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/83/a3/90aefdea5d7cc21496122b90ae9af7e3bd77f7c7ee9c67042173cb9436e8/fsdc_calories-0.10.1.tar.gz", hash = "sha256:e4346fc8b5cda7dd7be2e21f928d07f1a8234be4e89e7da6dbf73db73dcf6ab8", size = 107096, upload-time = "2026-07-15T15:39:11.818Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/0f/bf80d4a24f792acbc625d6193ff2a2437881cf7d3b7562943caee0318fa2/fsdc_calories-0.10.0-py3-none-any.whl", hash = "sha256:a4cc00ca5c3fbc951b9a8e4c85266474614a74fbd82411e39d9e27c8f0bbd667", size = 25137, upload-time = "2026-07-15T14:29:20.878Z" },
+    { url = "https://files.pythonhosted.org/packages/1a/a0/0069043cb20037d6111449fa64e35af068ad28d9445f2e28610d617fb3be/fsdc_calories-0.10.1-py3-none-any.whl", hash = "sha256:99aa0b9109b06306535cd05e697c723c1dc8f05a3ea7b02525f13b5ba7d91f2e", size = 109102, upload-time = "2026-07-15T15:39:10.557Z" },
+]
+
+[[package]]
+name = "fsdc-security"
+version = "0.3.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "altair", extra = ["all"] },
+    { name = "censusforge" },
+    { name = "duckdb" },
+    { name = "geopandas" },
+    { name = "jp-tools" },
+    { name = "polars" },
+    { name = "pyarrow" },
+    { name = "python-dotenv" },
+    { name = "shapely" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c1/f5/6d8f9381dd1318851a852989f25a5084d98a568531955edd5b3796b76a0e/fsdc_security-0.3.3.tar.gz", hash = "sha256:0b847c9bbe5845b264e62d45fdb5e4a3dddfa08db92f53be69531dbb45ba2e99", size = 188634, upload-time = "2026-07-15T15:57:39.179Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/74/df/b89c09c46d2547159e459395832ec202ef1fa189101118db55abda17b711/fsdc_security-0.3.3-py3-none-any.whl", hash = "sha256:4a139f959804427b87e8fa226f17e0b554acc4e680fccd96006b819b3c42412b", size = 18152, upload-time = "2026-07-15T15:57:37.837Z" },
 ]
 
 [[package]]

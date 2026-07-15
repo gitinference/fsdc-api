@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from fsdc_calories import DataCal
-from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
+from fsdc_security import SecurityData
 
 import os
 
@@ -18,7 +18,7 @@ async def get_calaries_data():
 
 @router.get("/files/nutrition/")
 async def get_security_data():
-    df = DataSecurity().calc_security()
+    df = SecurityData().calc_security()
     file_path = os.path.join(os.getcwd(), "data", "processed", "security.csv")
     df.write_csv(file_path)
     return FileResponse(file_path, media_type="text/csv", filename="security.csv")

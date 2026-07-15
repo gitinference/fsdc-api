@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 
 from fsdc_calories import DataCal
-from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
+from fsdc_security import SecurityViz
 from prfood_repl import FoodDeseart
 
 router = APIRouter()
@@ -29,9 +29,9 @@ async def get_calaries_data():
 
 @router.get("/graph/security", response_class=HTMLResponse)
 # the available variables
-async def gen_security_graph(year: int, var: SecurityGraphModel):
-    chart = DataSecurity(database_file="data/data.ddb").gen_graph(
-        year=year, var=var.value, type="linear", title="Security Map"
+async def gen_security_graph(year: int):
+    chart = SecurityViz().gen_graph_total(
+        year=year,
     )
     return chart.to_html()
 

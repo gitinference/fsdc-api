@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from fsdc_calories import DataCal
-from ..submodules.fsdc_security.src.data.data_viz import DataSecurity
+from fsdc_security import SecurityData
 
 router = APIRouter()
 
@@ -13,7 +13,7 @@ async def get_calaries_data():
 
 @router.get("/data/security/")
 async def get_security_data():
-    df = DataSecurity().calc_security()
+    df = SecurityData().calc_security()
     return df[["year", "geoid"]].to_dict()
 
 
