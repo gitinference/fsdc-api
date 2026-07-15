@@ -15,6 +15,6 @@ COPY . .
 
 COPY ./entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
-ENTRYPOINT ["/app/entrypoint.sh"]
+#ENTRYPOINT ["/app/entrypoint.sh"]
 
 CMD ["fastapi", "run", "src/main.py", "--port", "8000"]
