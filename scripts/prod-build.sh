@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # --- 1. Configurations ---
-IMAGE_NAME="ouslan/python-app"
+IMAGE_NAME="ouslan/fsdc-api"
 IMAGE_TAG="${GITHUB_SHA:-latest}" # Defaults to 'latest' if not in GitHub Actions
 
 echo "🚀 Starting Production Container Build Pipeline..."
