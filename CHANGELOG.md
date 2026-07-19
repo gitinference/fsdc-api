@@ -1,3 +1,8 @@
+## [0.3.1] - 2026-07-19
+
+### 🐛 Bug Fixes
+
+- *(.dockerignore)* Add .devenv to the list of files ignored by Docker to avoid unnecessary inclusion
 ## [0.3.0] - 2026-07-15
 
 ### 🚀 Features
