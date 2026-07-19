@@ -33,4 +33,5 @@ data/raw/
 .yaml
 .env
 .venv/
+.devenv/
 .vscode/
