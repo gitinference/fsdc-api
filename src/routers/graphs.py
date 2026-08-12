@@ -22,6 +22,12 @@ class FoodGraphModel(str, Enum):
     whole_foods = "whole_foods"
 
 
+class CaloriesGraphModel(str, Enum):
+    local = "local"
+    both = "both"
+    imported = "imported"
+
+
 @router.get("/graph/nutrition", response_class=HTMLResponse)
 async def get_calaries_data():
     return DataCal().gen_graphs_nuti_data().to_html()
@@ -43,6 +49,11 @@ async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
         .gen_food_graph(var=var.value, year=year, qtr=qtr, title=title)
         .to_html()
     )
+
+
+@router.get("/graph/timeseries", response_class=HTMLResponse)
+async def gen_graphs_nuti_data_fiscal(source: CaloriesGraphModel):
+    return DataCal().gen_graphs_nuti_data_fiscal(source=source.value).to_html()
 
 
 @router.get("/graph/price", response_class=HTMLResponse)
