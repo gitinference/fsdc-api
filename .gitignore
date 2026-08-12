@@ -176,6 +176,10 @@ cython_debug/
 
 # ignore mac files
 *.DS_Store
+*.gz
+*.vscode*
+*.bash_*
+data/media/*
 
 # ignore quarter files 
 # vscode
