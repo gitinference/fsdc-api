@@ -34,7 +34,7 @@ services:
     networks:
       - postgres_network
     volumes:
-      - ./data_staging:/app/data
+      - ./data:/app/data
       - .:/app
 volumes:
   pgdata_staging:
