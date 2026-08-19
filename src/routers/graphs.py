@@ -30,44 +30,15 @@ class CaloriesGraphModel(str, Enum):
 
 @router.get("/graph/nutrition", response_class=HTMLResponse)
 async def get_calaries_data():
-    # 1. Generate the Altair chart object
-    chart = DataCal().gen_graphs_nuti_data()
 
-    # 2. Make the chart width responsive
-    chart = chart.properties(width="container", height=300)
+    fig = DataCal().gen_graphs_nuti_data()
 
-    # 3. Export to HTML string
-    html_content = chart.to_html()
-
-    # 4. Inject mobile meta tag and centering CSS into the HTML head
-    mobile_meta = (
-        '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+    # Save with responsive configuration and full interactivity
+    html_content = fig.to_html(
+        config={"responsive": True, "displayModeBar": True},
+        include_plotlyjs="cdn",
+        full_html=True,
     )
-    centering_style = """
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            background-color: #ffffff;
-        }
-        .vega-embed {
-            max-width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-        }
-    </style>
-    """
-
-    if "<head>" in html_content:
-        html_content = html_content.replace(
-            "<head>", f"<head>{mobile_meta}{centering_style}"
-        )
 
     return HTMLResponse(content=html_content)
 
@@ -165,110 +136,40 @@ async def gen_food_graph(var: FoodGraphModel, year: int, qtr: int, title):
 @router.get("/graph/timeseries", response_class=HTMLResponse)
 async def gen_graphs_nuti_data_fiscal(source: CaloriesGraphModel):
     # 1. Generate the Altair chart object
-    chart = DataCal().gen_graphs_nuti_data_fiscal(source=source.value)
-
-    # 2. Make the chart width responsive
-    chart = chart.properties(width="container", height=300)
+    fig = DataCal().gen_graphs_nuti_data_fiscal(source=source.value)
 
     # 3. Export to HTML string
-    html_content = chart.to_html()
-
-    # 4. Inject mobile meta tag and centering CSS into the HTML head
-    mobile_meta = (
-        '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+    html_content = fig.to_html(
+        config={"responsive": True, "displayModeBar": True},
+        include_plotlyjs="cdn",
+        full_html=True,
     )
-    centering_style = """
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            background-color: #ffffff;
-        }
-        .vega-embed {
-            max-width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-        }
-    </style>
-    """
-
-    if "<head>" in html_content:
-        html_content = html_content.replace(
-            "<head>", f"<head>{mobile_meta}{centering_style}"
-        )
 
     return HTMLResponse(content=html_content)
 
 
 @router.get("/graph/price", response_class=HTMLResponse)
-async def get_price_graph():
+async def gen_graphs_price_change():
     # 1. Generate the Altair chart object
-    chart = DataCal().gen_graphs_price_change()
+    fig = DataCal().gen_graphs_price_change()
 
-    # 2. Make the chart width responsive
-    chart = chart.properties(width="container", height=300)
-
-    # 3. Export to HTML string
-    html_content = chart.to_html()
-
-    # 4. Inject mobile meta tag and centering CSS into the HTML head
-    mobile_meta = (
-        '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+    html_content = fig.to_html(
+        config={"responsive": True, "displayModeBar": True},
+        include_plotlyjs="cdn",
+        full_html=True,
     )
-    centering_style = """
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            background-color: #ffffff;
-        }
-        .vega-embed {
-            max-width: 100% !important;
-            display: flex !important;
-            justify-content: center !important;
-        }
-    </style>
-    """
-
-    if "<head>" in html_content:
-        html_content = html_content.replace(
-            "<head>", f"<head>{mobile_meta}{centering_style}"
-        )
 
     return HTMLResponse(content=html_content)
 
 
 @router.get("/graph/myplate", response_class=HTMLResponse)
-async def get_myplate_graph():
-    chart_html = DataCal().gen_graphs_plate().to_html()
+async def gen_graphs_plate():
+    fig = DataCal().gen_graphs_plate()
 
-    css_patch = """
-    <style>
-    #vis.vega-embed {
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
-    #vis.vega-embed > div {
-        margin: 0 auto !important;
-    }
-    </style>
-    """
+    html_content = fig.to_html(
+        config={"responsive": True, "displayModeBar": True},
+        include_plotlyjs="cdn",
+        full_html=True,
+    )
 
-    # Inject right after the <head> tag
-    chart_html = chart_html.replace("<head>", f"<head>{css_patch}")
-
-    return chart_html
+    return html_content
