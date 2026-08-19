@@ -1004,7 +1004,7 @@ dev = [
 
 [[package]]
 name = "fsdc-calories"
-version = "2.0.0"
+version = "2.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "altair", extra = ["all"] },
@@ -1013,9 +1013,9 @@ dependencies = [
     { name = "jp-imports" },
     { name = "plotly" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dc/34/20520958a26ee76a4f1f054c187229a8a4d6e73c2b30d8e0b8007b98e3bb/fsdc_calories-2.0.0.tar.gz", hash = "sha256:1a3b907e870f788826386d8961085212991b924d8091ebc1c6d4e23900060472", size = 49810, upload-time = "2026-08-19T17:11:07.083Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/21/2e/8211828130803181af79b7499eb253b156332f34d51373feea457534704c/fsdc_calories-2.0.1.tar.gz", hash = "sha256:a6269e8fc9d06867439394a21663214c7425c2e34056bd768a9ecacab800bf13", size = 101493, upload-time = "2026-08-19T17:55:57.727Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/19/ba/6a7b961f805e82861a8ef1a830fc34d8da7a1f3d339b90ec53fbb4fcf2a6/fsdc_calories-2.0.0-py3-none-any.whl", hash = "sha256:1a200c0f9055d2936bf0ee97a46ca7caad15e6db8c2b7467907433aea63e3977", size = 52118, upload-time = "2026-08-19T17:11:07.977Z" },
+    { url = "https://files.pythonhosted.org/packages/c8/df/3727fc2bc6d419240e19d126d3fa896462f7c8b2f52d34e7d943ff1bde47/fsdc_calories-2.0.1-py3-none-any.whl", hash = "sha256:ebcf542805adba7296a1df616ee4864a6a5750a68331ae2e42f8ea2d344dc075", size = 103871, upload-time = "2026-08-19T17:55:56.26Z" },
 ]
 
 [[package]]
