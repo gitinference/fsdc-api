@@ -3,7 +3,7 @@
 ### 🚜 Refactor
 
 - *(graphs.py)* Refactor graph generation functions to improve code readability and maintainability by using Altair chart objects and responsive design enhancements.
-## [0.3.1] - 2026-07-19
+## [0.4.0] - 2026-07-27
 
 ### 🐛 Bug Fixes
 
