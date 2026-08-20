@@ -1,7 +1,11 @@
 from fastapi import APIRouter
+import importlib.resources as resources
 
+import numpy as np
 from fsdc_calories import DataCal
 from fsdc_security import SecurityData
+import polars as pl
+import pandas as pd
 
 router = APIRouter()
 
@@ -19,11 +23,22 @@ async def get_security_data():
 
 @router.get("/data/price")
 async def get_price_data():
-    imports, exports = DataCal().gen_price_rankings()
+    df = DataCal().process_price(agriculture_filter=True)
+    path_data = str(resources.files("fsdc_calories").joinpath("data/hts4_walk.parquet"))
 
-    # Drop nan since they are not JSON compliant for the default FastAPI serialization library
-    imports = imports.dropna()
-    exports = exports.dropna()
+    desc_df = pl.read_parquet(path_data).rename(
+        {"code_4": "hs4", "Description": "hts_desc"}
+    )
+    df = df.join(desc_df, on="hs4", how="inner", validate="m:1")
 
-    response = {"import_data": imports.to_dict(), "export_data": exports.to_dict()}
-    return response
+    # Drop nulls directly in Polars
+    df = df.drop_nulls()
+
+    # Convert Polars to Pandas
+    pdf = df.to_pandas()
+
+    # Drop rows with infinite values (inf / -inf)
+    pdf = pdf.replace([np.inf, -np.inf], np.nan).dropna()
+
+    # Return as a list of dictionaries (records)
+    return pdf.to_dict(orient="records")
